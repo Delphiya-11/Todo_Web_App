@@ -1,8 +1,21 @@
 <title>Todos for ${name}</title>
 </head>
 <body>
-	<%@ include file="common/header.jspf" %>
-	<%@ include file="common/navigation.jspf" %>
+	<%@ include file="common/header.jspf"%>
+	<nav role="navigation" class="navbar navbar-default">
+		<div class="">
+			<a href="/" class="navbar-brand">${name}</a>
+		</div>
+		<div class="navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li class="active"><a href="/list-todos">Todos</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
 	<br />
 	<div class="container">
 		<h2>Here's a list of ${name}'s todos:</h2>
@@ -38,6 +51,6 @@
 			<a class="btn btn-success" href="/add-todo">Add a Todo</a>
 		</div>
 	</div>
-	<%@ include file="common/footer.jspf" %>
+	<%@ include file="common/footer.jspf"%>
 </body>
 </html>

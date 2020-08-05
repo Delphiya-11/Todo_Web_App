@@ -2,7 +2,20 @@
 </head>
 <body>
 	<%@ include file="common/header.jspf"%>
-	<%@ include file="common/navigation.jspf"%>
+	<nav role="navigation" class="navbar navbar-default">
+		<div class="">
+			<a href="/" class="navbar-brand">${name}</a>
+		</div>
+		<div class="navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+				<li class="active"><a href="/list-todos">Todos</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/logout">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
 	<br />
 	<div class="container">
 		<h2>Add todo for ${name}</h2>
