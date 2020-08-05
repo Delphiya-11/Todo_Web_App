@@ -92,5 +92,34 @@ public class TodoController {
 //		service.update(todo);
 		return "redirect:/list-todos";
 	}
+	
+	@RequestMapping(value = "/left-todos", method = RequestMethod.GET)
+	public String showLeftTodosPage(ModelMap model) {
+		String name = getLoggedInUserName(model);
+		model.put("todos", repository.findByUserAndIsDone(name, false));
+//		model.addAttribute("todos", service.retrieveTodos(name));
+		return "left-todos";
+	}
+	
+	@RequestMapping(value = "/done-todos", method = RequestMethod.GET)
+	public String showDoneTodosPage(ModelMap model) {
+		String name = getLoggedInUserName(model);
+		model.put("todos", repository.findByUserAndIsDone(name, true));
+//		model.addAttribute("todos", service.retrieveTodos(name));
+		return "done-todos";
+	}
+	
+	@RequestMapping(value = "/todo-done", method = RequestMethod.GET)
+	public String doneTodo(ModelMap model, @RequestParam int id) throws Exception {
+		Date date = new Date();  
+		Todo todo = repository.findById(id).get();
+		todo.setUser(getLoggedInUserName(model));
+		todo.setDone(true);
+		todo.setTargetDate(date);
+		repository.save(todo);
+		model.put("todo", todo);
+//		model.addAttribute("todo", service.retrieveTodo(id));
+		return "redirect:/left-todos";
+	}
 
 }

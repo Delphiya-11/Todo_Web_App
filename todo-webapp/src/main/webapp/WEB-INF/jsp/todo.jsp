@@ -1,18 +1,21 @@
 <title>Add Todo Page</title>
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 	<%@ include file="common/header.jspf"%>
-	<nav role="navigation" class="navbar navbar-default">
+	<nav role="navigation"
+		class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="">
-			<a href="/" class="navbar-brand">${name}</a>
+			<a href="/" class="navbar-brand"><span
+				class="glyphicon glyphicon-user"></span> ${name}</a>
 		</div>
 		<div class="navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
-				<li class="active"><a href="/list-todos">Todos</a></li>
+			<ul class="nav navbar-nav mr-auto nav-tabs">
+				<li class="nav-item"><a href="/">Home</a></li>
+				<li class="nav-item active"><a href="/list-todos">Todos</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/logout">Logout</a></li>
+			<ul class="nav justify-content-end">
+				<li><a href="/logout">Logout <span
+						class="glyphicon glyphicon-off"></span></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -37,7 +40,7 @@
 			</fieldset>
 			<br />
 			<br />
-			<input class="btn btn-success" type="submit" value="Submit" />
+			<input class="btn btn-info" type="submit" value="Submit" />
 		</form:form>
 	</div>
 	<%@ include file="common/footer.jspf"%>
