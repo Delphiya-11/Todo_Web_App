@@ -1,12 +1,13 @@
 <title>Error Page</title>
+<link href="css/style.css" rel="stylesheet">
 </head>
-<body class="p-3 mb-2 bg-dark text-white">
+<body class="bg-dark text-white">
 	<%@ include file="common/header.jspf"%>
 	<nav role="navigation"
 		class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="">
 			<a href="/" class="navbar-brand"><span
-				class="glyphicon glyphicon-user"></span> ${name}</a>
+				class="glyphicon glyphicon-user"></span> ${username}</a>
 		</div>
 		<div class="navbar-collapse">
 			<ul class="nav navbar-nav mr-auto nav-tabs">
@@ -17,7 +18,7 @@
 					role="button" aria-haspopup="true" aria-expanded="false">Other Details</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="/left-todos">Todos Left</a>
-						<a class="dropdown-item" href="#">Todos Done</a>
+						<a class="dropdown-item" href="/done-todos">Todos Done</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">Settings</a>
 					</div>

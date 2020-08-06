@@ -22,7 +22,7 @@ import com.delfia.springboot.web.service.TodoRepository;
 import com.delfia.springboot.web.service.TodoService;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes("username")
 public class TodoController {
 
 //	@Autowired
@@ -38,9 +38,9 @@ public class TodoController {
 	}
 
 	private String getLoggedInUserName(ModelMap model) {
-		return (String) model.get("name");
+		return (String) model.get("username");
 	}
-
+	
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap model) {
 		String name = getLoggedInUserName(model);

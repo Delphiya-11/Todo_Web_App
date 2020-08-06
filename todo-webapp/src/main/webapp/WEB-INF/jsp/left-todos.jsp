@@ -1,12 +1,13 @@
-<title>Todos for ${name}</title>
+<title>Remaining Todos for ${username}</title>
+<link href="css/style.css" rel="stylesheet">
 </head>
-<body class="p-3 mb-2 bg-dark text-white">
+<body class="bg-dark text-white">
 	<%@ include file="common/header.jspf"%>
 	<nav role="navigation"
 		class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="">
 			<a href="/" class="navbar-brand"><span
-				class="glyphicon glyphicon-user"></span> ${name}</a>
+				class="glyphicon glyphicon-user"></span> ${username}</a>
 		</div>
 		<div class="navbar-collapse">
 			<ul class="nav navbar-nav mr-auto nav-tabs">
@@ -31,38 +32,43 @@
 	</nav>
 	<br />
 	<div class="container">
-		<h2>Here's a list of ${name}'s left todos:</h2>
-		<br /> <br />
-		<table class="table table-striped table-dark">
-			<caption>Your Left Todos</caption>
-			<thead class="thead-dark">
-				<tr>
-					<th>Description</th>
-					<th>Date</th>
-					<th>Is Done?</th>
-					<th>Mark As Done</th>
-					<th>Delete Todo</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${todos}" var="todo">
-					<tr>
-						<td>${todo.description}</td>
-						<td><fmt:formatDate value="${todo.targetDate}"
-								pattern="dd/MM/yyyy" /></td>
-						<td>${todo.done}</td>
-						<td><a
-							style="font-size: 20px; color: yellow; text-shadow: 2px 2px 4px #000000;"
-							href="/todo-done?id=${todo.id}"><span
-								class="glyphicon glyphicon-check"></span></a></td>
-						<td><a
-							style="font-size: 20px; color: red; text-shadow: 2px 2px 4px #000000;"
-							href="/delete-todo?id=${todo.id}"><span
-								class="glyphicon glyphicon-trash"></span></a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<div class="card-transparent rounded shadow-lg p-3 mb-5 rounded"
+			style="background-color: rgba(245, 245, 245, 0.4);">
+			<div class="card-body">
+				<h2>Here's a list of ${username}'s left todos:</h2>
+				<br /> <br />
+				<table class="table table-striped table-dark">
+					<caption>Your Left Todos</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>Description</th>
+							<th>Date</th>
+							<th>Is Done?</th>
+							<th>Mark As Done</th>
+							<th>Delete Todo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${todos}" var="todo">
+							<tr>
+								<td>${todo.description}</td>
+								<td><fmt:formatDate value="${todo.targetDate}"
+										pattern="dd/MM/yyyy" /></td>
+								<td>${todo.done}</td>
+								<td><a
+									style="font-size: 20px; color: yellow; text-shadow: 2px 2px 4px #000000;"
+									href="/todo-done?id=${todo.id}"><span
+										class="glyphicon glyphicon-check"></span></a></td>
+								<td><a
+									style="font-size: 20px; color: red; text-shadow: 2px 2px 4px #000000;"
+									href="/delete-todo?id=${todo.id}"><span
+										class="glyphicon glyphicon-trash"></span></a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 	<%@ include file="common/footer.jspf"%>
 </body>

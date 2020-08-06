@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes("username")
 public class WelcomeController {
-
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showWelcomePage(ModelMap model) {
-		model.put("name", getLoggedInUserName());
+		model.put("username", getLoggedInUserName());
 		return "welcome";
 	}
 
