@@ -1,0 +1,13 @@
+com\delfia\springboot\web\service\UserRepository.class
+com\delfia\springboot\web\controller\ExceptionController.class
+com\delfia\springboot\web\model\Todo.class
+com\delfia\springboot\web\controller\LoginController.class
+com\delfia\springboot\web\controller\RegistrationController.class
+com\delfia\springboot\web\model\User.class
+com\delfia\springboot\web\controller\TodoController.class
+com\delfia\springboot\web\service\TodoService.class
+com\delfia\springboot\web\controller\LogoutController.class
+com\delfia\springboot\web\security\SecurityConfiguration.class
+com\delfia\springboot\web\controller\WelcomeController.class
+com\delfia\springboot\web\service\TodoRepository.class
+com\delfia\springboot\web\SpringBootFirstWebApplication.class
