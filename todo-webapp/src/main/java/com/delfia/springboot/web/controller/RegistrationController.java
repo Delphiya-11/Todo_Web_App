@@ -25,39 +25,40 @@ public class RegistrationController {
 	private String getLoggedInUserName(ModelMap model) {
 		return (String) model.get("username");
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String addUser(ModelMap model, @Valid User user, BindingResult result) {
 		if (result.hasErrors())
 			return "login";
 		else {
-			if(checkUsers(user)) {
+			if (checkUsers(user)) {
 				repository.save(user);
 				return "redirect:/login?success";
-			}
-			else {
+			} else {
 				return "redirect:/login?error";
 			}
 		}
 	}
 
 	private boolean checkUsers(User user) {
-		boolean flag=false;
+		boolean flag = false;
 		List<User> users = repository.findAll();
-		for (User obj : users) {
-			if (user.getUsername().equals(obj.getUsername()) && user.getUsername()!=null) {
-				flag=false;
-				break;
+		if (users.isEmpty()) {
+			return true;
+		} else {
+			for (User obj : users) {
+				if (user.getUsername().equals(obj.getUsername())) {
+					flag = false;
+					break;
+				} else if (user.getPassword().equals(obj.getPassword())) {
+					flag = false;
+					break;
+				} else {
+					flag = true;
+					continue;
+				}
 			}
-			else if(user.getPassword().equals(obj.getPassword()) && user.getPassword()!=null) {
-				flag=false;
-				break;
-			}
-			else {
-				flag=true;
-				continue;
-			}
+			return flag;
 		}
-		return flag;
 	}
 }

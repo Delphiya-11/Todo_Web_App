@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.delfia.springboot.web</groupId>
-	<artifactId>spring-boot-first-web-application</artifactId>
+	<artifactId>todo-webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>todo-webapp</name>
 	<description>Demo project for Spring Boot</description>
