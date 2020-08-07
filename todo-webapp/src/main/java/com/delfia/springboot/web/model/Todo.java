@@ -15,7 +15,7 @@ public class Todo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	private String user;
+	private String username;
 
 	@Size(min = 6, message = "Enter at least 6 characters")
 	private String description;
@@ -27,10 +27,10 @@ public class Todo {
 		super();
 	}
 
-	public Todo(int id, String user, String description, Date targetDate, boolean isDone) {
+	public Todo(int id, String username, String description, Date targetDate, boolean isDone) {
 		super();
 		this.id = id;
-		this.user = user;
+		this.username = username;
 		this.description = description;
 		this.targetDate = targetDate;
 		this.isDone = isDone;
@@ -44,12 +44,12 @@ public class Todo {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getDescription() {
@@ -104,7 +104,7 @@ public class Todo {
 
 	@Override
 	public String toString() {
-		return String.format("Todo [id=%s, user=%s, description=%s, targetDate=%s, isDone=%s]", id, user, description,
+		return String.format("Todo [id=%s, username=%s, description=%s, targetDate=%s, isDone=%s]", id, username, description,
 				targetDate, isDone);
 	}
 

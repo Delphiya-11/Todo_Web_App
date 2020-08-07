@@ -19,7 +19,7 @@ import com.delfia.springboot.web.service.UserRepository;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	UserRepository repository;
+	private UserRepository repository;
 
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {

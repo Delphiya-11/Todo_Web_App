@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.delfia.springboot.web.model.Todo;
 import com.delfia.springboot.web.service.TodoRepository;
-import com.delfia.springboot.web.service.TodoService;
 
 @Controller
 @SessionAttributes("username")
@@ -44,7 +43,7 @@ public class TodoController {
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap model) {
 		String name = getLoggedInUserName(model);
-		model.put("todos", repository.findByUser(name));
+		model.put("todos", repository.findByUsername(name));
 //		model.addAttribute("todos", service.retrieveTodos(name));
 		return "list-todos";
 	}
@@ -59,7 +58,7 @@ public class TodoController {
 	public String addTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 		if (result.hasErrors())
 			return "todo";
-		todo.setUser(getLoggedInUserName(model));
+		todo.setUsername(getLoggedInUserName(model));
 		repository.save(todo);
 //		service.addTodo(getLoggedInUserName(model),todo.getDesc(),new Date(),false);
 		return "redirect:/list-todos";
@@ -87,7 +86,7 @@ public class TodoController {
 	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 		if (result.hasErrors())
 			return "todo";
-		todo.setUser(getLoggedInUserName(model));
+		todo.setUsername(getLoggedInUserName(model));
 		repository.save(todo);
 //		service.update(todo);
 		return "redirect:/list-todos";
@@ -96,7 +95,7 @@ public class TodoController {
 	@RequestMapping(value = "/left-todos", method = RequestMethod.GET)
 	public String showLeftTodosPage(ModelMap model) {
 		String name = getLoggedInUserName(model);
-		model.put("todos", repository.findByUserAndIsDone(name, false));
+		model.put("todos", repository.findByUsernameAndIsDone(name, false));
 //		model.addAttribute("todos", service.retrieveTodos(name));
 		return "left-todos";
 	}
@@ -104,7 +103,7 @@ public class TodoController {
 	@RequestMapping(value = "/done-todos", method = RequestMethod.GET)
 	public String showDoneTodosPage(ModelMap model) {
 		String name = getLoggedInUserName(model);
-		model.put("todos", repository.findByUserAndIsDone(name, true));
+		model.put("todos", repository.findByUsernameAndIsDone(name, true));
 //		model.addAttribute("todos", service.retrieveTodos(name));
 		return "done-todos";
 	}
@@ -113,7 +112,7 @@ public class TodoController {
 	public String doneTodo(ModelMap model, @RequestParam int id) throws Exception {
 		Date date = new Date();  
 		Todo todo = repository.findById(id).get();
-		todo.setUser(getLoggedInUserName(model));
+		todo.setUsername(getLoggedInUserName(model));
 		todo.setDone(true);
 		todo.setTargetDate(date);
 		repository.save(todo);

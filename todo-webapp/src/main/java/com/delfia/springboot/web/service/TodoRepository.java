@@ -8,7 +8,7 @@ import com.delfia.springboot.web.model.Todo;
 
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
 
-	public List<Todo> findByUser(String user);
+	public List<Todo> findByUsername(String username);
 	
-	public List<Todo> findByUserAndIsDone(String user, boolean isDone);
+	public List<Todo> findByUsernameAndIsDone(String username, boolean isDone);
 }
