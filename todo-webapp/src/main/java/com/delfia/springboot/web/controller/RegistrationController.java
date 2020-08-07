@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.delfia.springboot.web.model.User;
@@ -19,7 +17,7 @@ import com.delfia.springboot.web.service.UserRepository;
 
 @Controller
 @SessionAttributes("username")
-public class LoginController {
+public class RegistrationController {
 
 	@Autowired
 	private UserRepository repository;
@@ -28,37 +26,35 @@ public class LoginController {
 		return (String) model.get("username");
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLoginPage(ModelMap model) {
-		model.addAttribute("user", new User()); 
-		return "login";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String handleLogin(ModelMap model, @Valid User user, BindingResult result) {
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String addUser(ModelMap model, @Valid User user, BindingResult result) {
 		if (result.hasErrors())
 			return "login";
 		else {
-			if (validateUser(user.getUsername(), user.getPassword())) {
-				model.put("username", user.getUsername());
-				return "welcome";
+			if(checkUsers(user)) {
+				repository.save(user);
+				return "redirect:/login?success";
 			}
 			else {
-				model.put("errorMessage", "Invalid Credentials!!");
-				return "login";
+				return "redirect:/login?error";
 			}
 		}
 	}
 
-	private boolean validateUser(String username, String password) {
-		boolean flag = false;
+	private boolean checkUsers(User user) {
+		boolean flag=false;
 		List<User> users = repository.findAll();
 		for (User obj : users) {
-			if (obj.getUsername().equals(username) && obj.getPassword().equals(password)) {
-				flag = true;
+			if (user.getUsername().equals(obj.getUsername()) && user.getUsername()!=null) {
+				flag=false;
 				break;
-			} else {
-				flag = false;
+			}
+			else if(user.getPassword().equals(obj.getPassword()) && user.getPassword()!=null) {
+				flag=false;
+				break;
+			}
+			else {
+				flag=true;
 				continue;
 			}
 		}

@@ -7,7 +7,7 @@ body {
 }
 
 .dark-mode {
-	background-color: #1c313a;
+	background-color: #373737;
 	color: white;
 }
 </style>
@@ -15,7 +15,7 @@ body {
 <body>
 	<%@ include file="common/header.jspf"%>
 	<nav role="navigation"
-		class="navbar navbar-expand-lg navbar-light bg-light">
+		class="navbar navbar-expand navbar-light bg-light">
 		<div class="">
 			<a href="/" class="navbar-brand"><span
 				class="glyphicon glyphicon-user"></span> ${username}</a>
@@ -41,19 +41,22 @@ body {
 						<label class="theme-switch" for="checkbox"> <input
 							type="checkbox" id="checkbox" onclick="myFunction()" />
 							<div class="slider round"></div>
-						</label> <em>Enable Dark Mode!</em>
+						</label>
+						&nbsp;&nbsp;
+						<label style="color: black">Go Dark!</label>
+						&nbsp;&nbsp;
 					</div>
 				</li>
 			</ul>
 			<ul class="nav justify-content-end">
-				<li><a href="/login">Logout <span
+				<li><a href="/logout">Logout <span
 						class="glyphicon glyphicon-off"></span></a></li>
 			</ul>
 		</div>
 	</nav>
 	<br />
 	<div class="container">
-		<div class="card-transparent rounded shadow-lg p-3 mb-5 rounded"
+		<div class="card-transparent rounded shadow-lg rounded"
 			style="background-color: rgba(245, 245, 245, 0.4);">
 			<div class="card-body">
 				<h2>Here's a list of ${username}'s todos:</h2>

@@ -25,8 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		List<User> users = repository.findAll();
 		for (User user : users) {
-			if (user.getUsername().equals("Delfia") && user.getPassword().equals("test123")) {
-				auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("Delfia")
+			if (user.getUsername().equals("Delfia_11") && user.getPassword().equals("test123")) {
+				auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance()).withUser("Delfia_11")
 						.password("test123").roles("USER", "ADMIN");
 			} else {
 				auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())

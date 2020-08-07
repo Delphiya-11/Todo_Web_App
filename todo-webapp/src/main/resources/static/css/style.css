@@ -1,6 +1,5 @@
 @import
-	url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700|Sansita+One)
-	;
+	url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700|Sansita+One);
 
 :root {
 	--primary-color: #302AE6;
@@ -20,8 +19,8 @@
 
 body {
 	font-family: "Lato", sans-serif;
-	background-color: var(- -bg-color);
-	color: var(- -font-color);
+	background-color: var(--bg-color);
+	color: var(--font-color);
 	margin: 0 auto;
 	font-size: calc(1rem + 0.25vh);
 }
@@ -39,7 +38,7 @@ p {
 }
 
 a {
-	color: var(- -primary-color);
+	color: var(--primary-color);
 	text-decoration: none;
 	border-bottom: 3px solid transparent;
 	font-weight: bold;
@@ -59,7 +58,7 @@ section {
 	font-style: italic;
 	display: block;
 	margin-bottom: 4vh;
-	color: var(- -secondary-color);
+	color: var(--secondary-color);
 }
 
 nav {
