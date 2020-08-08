@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -16,20 +18,25 @@ import com.delfia.springboot.web.model.User;
 import com.delfia.springboot.web.service.UserRepository;
 
 @Controller
-@SessionAttributes("username")
 public class RegistrationController {
 
 	@Autowired
 	private UserRepository repository;
 
-	private String getLoggedInUserName(ModelMap model) {
-		return (String) model.get("username");
-	}
+//	private String getLoggedInUserName(ModelMap model) {
+//		return (String) model.get("username");
+//	}
+
+//	@RequestMapping(value = "/register", method = RequestMethod.GET)
+//	public String showRegisterPage(ModelMap model) {
+//		model.addAttribute("user", new User());
+//		return "register";
+//	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String addUser(ModelMap model, @Valid User user, BindingResult result) {
+	public String registerUser(ModelMap model, @Valid User user, BindingResult result) {
 		if (result.hasErrors())
-			return "login";
+			return "redirect:/login?error";
 		else {
 			if (checkUsers(user)) {
 				repository.save(user);
@@ -61,4 +68,5 @@ public class RegistrationController {
 			return flag;
 		}
 	}
+
 }

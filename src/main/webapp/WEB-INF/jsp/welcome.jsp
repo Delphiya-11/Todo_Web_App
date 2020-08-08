@@ -1,10 +1,13 @@
 <title>Welcome Page</title>
 <link href="css/style.css" rel="stylesheet">
+<script>
+	history.forward();
+</script>
 </head>
 <body class="bg-dark text-white">
 	<%@ include file="common/header.jspf"%>
 	<nav role="navigation"
-		class="navbar navbar-expand-lg navbar-light bg-light">
+		class="navbar navbar-expand navbar-light bg-light">
 		<div class="">
 			<a href="/" class="navbar-brand"><span
 				class="glyphicon glyphicon-user"></span> ${username}</a>

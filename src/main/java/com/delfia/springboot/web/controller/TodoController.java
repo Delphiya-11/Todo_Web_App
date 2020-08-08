@@ -39,10 +39,12 @@ public class TodoController {
 	private String getLoggedInUserName(ModelMap model) {
 		return (String) model.get("username");
 	}
-	
+
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap model) {
 		String name = getLoggedInUserName(model);
+		if (name.equals(null))
+			return "error";
 		model.put("todos", repository.findByUsername(name));
 //		model.addAttribute("todos", service.retrieveTodos(name));
 		return "list-todos";
@@ -50,14 +52,19 @@ public class TodoController {
 
 	@RequestMapping(value = "/add-todo", method = RequestMethod.GET)
 	public String showAddTodoPage(ModelMap model) {
+		if (getLoggedInUserName(model).equals(null))
+			return "error";
 		model.addAttribute("todo", new Todo(0, getLoggedInUserName(model), "", new Date(), false));
 		return "todo";
 	}
 
 	@RequestMapping(value = "/add-todo", method = RequestMethod.POST)
 	public String addTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-		if (result.hasErrors())
+		if (result.hasErrors()) {
 			return "todo";
+		} else if (getLoggedInUserName(model).equals(null)) {
+			return "error";
+		}
 		todo.setUsername(getLoggedInUserName(model));
 		repository.save(todo);
 //		service.addTodo(getLoggedInUserName(model),todo.getDesc(),new Date(),false);
@@ -68,6 +75,8 @@ public class TodoController {
 	public String deleteTodo(ModelMap model, @RequestParam int id) {
 //		if(id==1)
 //			throw new RuntimeException("DummyException");
+		if (getLoggedInUserName(model).equals(null))
+			return "error";
 		repository.deleteById(id);
 //		service.deleteTodo(id);
 		model.clear();
@@ -76,6 +85,8 @@ public class TodoController {
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.GET)
 	public String showUpdateTodoPage(ModelMap model, @RequestParam int id) {
+		if (getLoggedInUserName(model).equals(null))
+			return "error";
 		Todo todo = repository.findById(id).get();
 		model.put("todo", todo);
 //		model.addAttribute("todo", service.retrieveTodo(id));
@@ -84,33 +95,42 @@ public class TodoController {
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.POST)
 	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-		if (result.hasErrors())
+		if (result.hasErrors()) {
 			return "todo";
+		} else if (getLoggedInUserName(model).equals(null)) {
+			return "error";
+		}
 		todo.setUsername(getLoggedInUserName(model));
 		repository.save(todo);
 //		service.update(todo);
 		return "redirect:/list-todos";
 	}
-	
+
 	@RequestMapping(value = "/left-todos", method = RequestMethod.GET)
 	public String showLeftTodosPage(ModelMap model) {
 		String name = getLoggedInUserName(model);
+		if (name.equals(null))
+			return "error";
 		model.put("todos", repository.findByUsernameAndIsDone(name, false));
 //		model.addAttribute("todos", service.retrieveTodos(name));
 		return "left-todos";
 	}
-	
+
 	@RequestMapping(value = "/done-todos", method = RequestMethod.GET)
 	public String showDoneTodosPage(ModelMap model) {
 		String name = getLoggedInUserName(model);
+		if (name.equals(null))
+			return "error";
 		model.put("todos", repository.findByUsernameAndIsDone(name, true));
 //		model.addAttribute("todos", service.retrieveTodos(name));
 		return "done-todos";
 	}
-	
+
 	@RequestMapping(value = "/todo-done", method = RequestMethod.GET)
 	public String doneTodo(ModelMap model, @RequestParam int id) throws Exception {
-		Date date = new Date();  
+		if (getLoggedInUserName(model).equals(null))
+			return "error";
+		Date date = new Date();
 		Todo todo = repository.findById(id).get();
 		todo.setUsername(getLoggedInUserName(model));
 		todo.setDone(true);

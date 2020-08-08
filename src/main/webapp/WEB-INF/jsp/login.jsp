@@ -1,4 +1,7 @@
 <title>Login Page</title>
+<script>
+	history.forward();
+</script>
 </head>
 <body class="text-white">
 	<%@ include file="common/header.jspf"%>
@@ -80,7 +83,7 @@
 												<fieldset class="form-group">
 													<form:label class="col-md-6" path="password">Password</form:label>
 													<form:input path="password" type="password"
-														placeholder="Enter password"
+														placeholder="Enter password of at least 6 characters"
 														style="height:45px; width:350px" class="form-control"
 														required="required" />
 													<form:errors path="password" cssClass="text-warning" />

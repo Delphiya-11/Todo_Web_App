@@ -1,4 +1,5 @@
 com\delfia\springboot\web\service\UserRepository.class
+com\delfia\springboot\web\service\UserDetailsServiceImpl.class
 com\delfia\springboot\web\controller\ExceptionController.class
 com\delfia\springboot\web\model\Todo.class
 com\delfia\springboot\web\controller\LoginController.class

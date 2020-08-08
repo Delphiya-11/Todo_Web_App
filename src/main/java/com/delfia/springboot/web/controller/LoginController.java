@@ -22,9 +22,9 @@ public class LoginController {
 	@Autowired
 	private UserRepository repository;
 
-	private String getLoggedInUserName(ModelMap model) {
-		return (String) model.get("username");
-	}
+//	private String getLoggedInUserName(ModelMap model) {
+//		return (String) model.get("username");
+//	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginPage(ModelMap model) {
