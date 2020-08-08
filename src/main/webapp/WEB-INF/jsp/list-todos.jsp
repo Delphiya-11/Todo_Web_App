@@ -22,7 +22,7 @@ body {
 		</div>
 		<div class="navbar-collapse">
 			<ul class="nav navbar-nav mr-auto nav-tabs">
-				<li class="nav-item"><a href="/">Home</a></li>
+				<li class="nav-item"><a href="/">Profile</a></li>
 				<li class="nav-item active"><a href="/list-todos">Todos</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
@@ -66,8 +66,8 @@ body {
 					<thead>
 						<tr>
 							<th>Description</th>
-							<th>Date</th>
-							<th>Is Done?</th>
+							<th>Target Date</th>
+							<th>Completed</th>
 							<th>Update Todo</th>
 							<th>Delete Todo</th>
 						</tr>

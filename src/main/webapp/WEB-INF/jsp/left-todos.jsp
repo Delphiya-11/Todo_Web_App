@@ -1,7 +1,18 @@
 <title>Remaining Todos for ${username}</title>
 <link href="css/style.css" rel="stylesheet">
+<style>
+body {
+	background-color: white;
+	color: black;
+}
+
+.dark-mode {
+	background-color: #373737;
+	color: white;
+}
+</style>
 </head>
-<body class="bg-dark text-white">
+<body>
 	<%@ include file="common/header.jspf"%>
 	<nav role="navigation"
 		class="navbar navbar-expand navbar-light bg-light">
@@ -11,7 +22,7 @@
 		</div>
 		<div class="navbar-collapse">
 			<ul class="nav navbar-nav mr-auto nav-tabs">
-				<li class="nav-item"><a href="/">Home</a></li>
+				<li class="nav-item"><a href="/">Profile</a></li>
 				<li class="nav-item"><a href="/list-todos">Todos</a></li>
 				<li class="nav-item dropdown active"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
@@ -23,6 +34,17 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">Settings</a>
 					</div></li>
+			</ul>
+			<ul class="nav justify-content-end">
+				<li>
+					<div class="theme-switch-wrapper">
+						<label class="theme-switch" for="checkbox"> <input
+							type="checkbox" id="checkbox" onclick="myFunction()" />
+							<div class="slider round"></div>
+						</label> &nbsp;&nbsp; <label style="color: black">Go Dark!</label>
+						&nbsp;&nbsp;
+					</div>
+				</li>
 			</ul>
 			<ul class="nav justify-content-end">
 				<li><a href="/logout">Logout <span
@@ -42,8 +64,8 @@
 					<thead class="thead-dark">
 						<tr>
 							<th>Description</th>
-							<th>Date</th>
-							<th>Is Done?</th>
+							<th>Target Date</th>
+							<th>Completed</th>
 							<th>Mark As Done</th>
 							<th>Delete Todo</th>
 						</tr>
@@ -70,6 +92,12 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		function myFunction() {
+			var element = document.body;
+			element.classList.toggle("dark-mode");
+		}
+	</script>
 	<%@ include file="common/footer.jspf"%>
 </body>
 </html>

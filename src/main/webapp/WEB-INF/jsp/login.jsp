@@ -9,32 +9,34 @@
 		style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1503551723145-6c040742065b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80); background-repeat: no-repeat; background-size: cover">
 		<div class="container h-100 ">
 			<div class="row h-100 justify-content-center align-items-center">
-				<div class="card card-transparent shadow-lg rounded"
+				<div class="card card-transparent shadow-lg"
 					style="background-color: rgba(245, 245, 245, 0.4); height: 450px; width: 400px">
 					<div
 						class="card-body row h-100 justify-content-center align-items-center">
 						<h3 class="card-title">Login to your account</h3>
-						<br /> <br /> <font color="red">${errorMessage}</font>
+						<br /> <br />
 						<form:form action="/login" method="post" modelAttribute="user">
 							<fieldset class="form-group">
 								<form:label path="username">Username</form:label>
 								<form:input path="username" type="text"
 									placeholder="Enter username" style="height:45px; width:350px"
-									class="form-control" required="required" />
+									class="form-control" required="required" autofocus="true" />
 							</fieldset>
 							<fieldset class="form-group">
 								<form:label path="password">Password</form:label>
 								<form:input path="password" type="password"
 									placeholder="Enter password" style="height:45px; width:350px"
 									class="form-control" required="required" />
+								<form:errors path="username" cssClass="warning" />
 							</fieldset>
+							<font color="red">${errorMessage}</font>
 							<br />
 							<input style="height: 40px; width: 350px" class="btn btn-info"
 								type="submit" value="Login" />
 						</form:form>
 					</div>
 					<div align="center" class="card-footer" style="font-size: 18px">
-						New to Todo WebApp?
+						New to Todo?
 						<button style="font-size: 18px" type="button"
 							class="btn btn-outline-warning" data-toggle="modal"
 							data-target="#exampleModalCenter">Sign Up</button>
@@ -63,7 +65,7 @@
 													<form:input path="firstname" type="text"
 														placeholder="Enter first name"
 														style="height:45px; width:350px" class="form-control"
-														required="required" />
+														required="required" autofocus="true" />
 												</fieldset>
 												<fieldset class="form-group">
 													<form:label class="col-md-6" path="lastname">Last Name</form:label>
@@ -78,7 +80,7 @@
 														placeholder="Enter username"
 														style="height:45px; width:350px" class="form-control"
 														required="required" />
-													<form:errors path="username" cssClass="text-warning" />
+													<form:errors path="username" cssClass="warning" />
 												</fieldset>
 												<fieldset class="form-group">
 													<form:label class="col-md-6" path="password">Password</form:label>
@@ -86,7 +88,7 @@
 														placeholder="Enter password of at least 6 characters"
 														style="height:45px; width:350px" class="form-control"
 														required="required" />
-													<form:errors path="password" cssClass="text-warning" />
+													<form:errors path="password" cssClass="warning" />
 												</fieldset>
 												<br />
 												<input style="height: 40px; width: 350px"

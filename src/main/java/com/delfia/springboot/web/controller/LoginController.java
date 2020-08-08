@@ -34,8 +34,9 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String handleLogin(ModelMap model, @Valid User user, BindingResult result) {
-		if (result.hasErrors())
+		if (result.hasErrors()) {
 			return "login";
+		}
 		else {
 			if (validateUser(user.getUsername(), user.getPassword())) {
 				model.put("username", user.getUsername());
